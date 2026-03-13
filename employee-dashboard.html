@@ -8,31 +8,33 @@
 
 <body>
 
-<div class="dashboard-container">
-
-<h1>Employee Dashboard</h1>
-
-<div class="top-section">
-
-<div class="welcome-box">
-<h2>Welcome Nikesh</h2>
-
-<h3>Leave Balance</h3>
-<p id="vacationBalance">Vacation Days: 12</p>
-<p id="sickBalance">Sick Leave: 5</p>
+<div class="header">
+Employee Leave Management System
 </div>
 
-<div class="action-buttons">
+<div class="navbar">
+<a href="employee-dashboard.html">Dashboard</a>
 <a href="leave-request.html">Request Leave</a>
-<a href="leave-calendar.html">Leave Calendar</a>
+<a href="leave-calendar.html">Calendar</a>
 <a href="index.html">Logout</a>
 </div>
 
+<div class="container">
+
+<div class="card">
+
+<h2>Welcome Nikesh</h2>
+
+<p id="vacationBalance">Vacation Days: 12</p>
+<p id="sickBalance">Sick Leave: 5</p>
+
 </div>
+
+<div class="card">
 
 <h2>My Leave Requests</h2>
 
-<table border="1" id="myLeaveTable">
+<table id="myLeaveTable">
 
 <tr>
 <th>Leave Type</th>
@@ -45,51 +47,7 @@
 
 </div>
 
-
-<script>
-
-let vacation = 12;
-let sick = 5;
-
-let requests = JSON.parse(localStorage.getItem("leaveRequests")) || [];
-
-let table = document.getElementById("myLeaveTable");
-
-requests.forEach(function(req){
-
-let row = table.insertRow();
-
-row.innerHTML =
-"<td>"+req.type+"</td>"+
-"<td>"+req.start+"</td>"+
-"<td>"+req.end+"</td>"+
-"<td>"+req.status+"</td>";
-
-});
-
-
-requests.forEach(function(req){
-
-if(req.status === "Approved"){
-
-let start = new Date(req.start);
-let end = new Date(req.end);
-
-let diff = end.getTime() - start.getTime();
-
-let days = Math.ceil(diff/(1000*3600*24))+1;
-
-if(req.type==="Vacation"){vacation-=days}
-if(req.type==="Sick Leave"){sick-=days}
-
-}
-
-});
-
-document.getElementById("vacationBalance").innerText="Vacation Days: "+vacation;
-document.getElementById("sickBalance").innerText="Sick Leave: "+sick;
-
-</script>
+</div>
 
 </body>
 
