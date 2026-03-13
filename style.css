@@ -1,5 +1,5 @@
 body{
-font-family: "Segoe UI", Arial, sans-serif;
+font-family:"Segoe UI", Arial;
 margin:0;
 background:#f4f6f9;
 }
@@ -9,7 +9,6 @@ background:#2c3e50;
 color:white;
 padding:18px 40px;
 font-size:22px;
-font-weight:bold;
 }
 
 .container{
@@ -21,35 +20,32 @@ margin:40px auto;
 background:white;
 padding:30px;
 border-radius:8px;
-box-shadow:0 4px 10px rgba(0,0,0,0.1);
-margin-bottom:30px;
+box-shadow:0 4px 12px rgba(0,0,0,0.1);
+margin-bottom:25px;
 }
 
 h1,h2{
 margin-top:0;
 }
 
-.navbar{
+label{
+display:block;
 margin-top:10px;
 }
 
-.navbar a{
-text-decoration:none;
-background:#1abc9c;
-color:white;
-padding:8px 14px;
+input,select,textarea{
+width:100%;
+padding:10px;
+margin-top:5px;
+margin-bottom:15px;
+border:1px solid #ccc;
 border-radius:4px;
-margin-right:8px;
-}
-
-.navbar a:hover{
-background:#16a085;
 }
 
 button{
 background:#1abc9c;
-color:white;
 border:none;
+color:white;
 padding:10px 18px;
 border-radius:4px;
 cursor:pointer;
@@ -59,13 +55,21 @@ button:hover{
 background:#16a085;
 }
 
-input,select,textarea{
-width:100%;
-padding:10px;
-margin-top:8px;
-margin-bottom:15px;
-border:1px solid #ccc;
+.navbar{
+margin-top:15px;
+}
+
+.navbar a{
+text-decoration:none;
+background:#34495e;
+color:white;
+padding:8px 14px;
 border-radius:4px;
+margin-right:10px;
+}
+
+.logout-btn{
+background:#e74c3c;
 }
 
 table{
@@ -86,8 +90,28 @@ border-bottom:1px solid #ddd;
 text-align:center;
 }
 
-tr:hover{
-background:#f1f1f1;
+.landing{
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+background:#2c3e50;
+}
+
+.landing-card{
+background:white;
+padding:50px;
+width:500px;
+text-align:center;
+border-radius:8px;
+}
+
+.primary-btn{
+background:#1abc9c;
+color:white;
+padding:12px 20px;
+border-radius:5px;
+text-decoration:none;
 }
 
 .login-page{
@@ -101,8 +125,7 @@ background:#2c3e50;
 .login-card{
 background:white;
 padding:40px;
-width:340px;
+width:320px;
 border-radius:8px;
-box-shadow:0 8px 20px rgba(0,0,0,0.3);
 text-align:center;
 }
