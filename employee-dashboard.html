@@ -49,14 +49,11 @@
 
 <script>
 
-// starting leave balance
 let vacation = 12;
 let sick = 5;
 
-// get leave requests from localStorage
 let requests = JSON.parse(localStorage.getItem("leaveRequests")) || [];
 
-// display leave request history
 let table = document.getElementById("myLeaveTable");
 
 requests.forEach(function(req){
@@ -72,7 +69,6 @@ row.innerHTML =
 });
 
 
-// calculate leave balance after approval
 
 requests.forEach(function(req){
 
@@ -98,7 +94,6 @@ sick -= days;
 });
 
 
-// update balance on page
 
 document.getElementById("vacationBalance").innerText =
 "Vacation Days: " + vacation;
@@ -111,5 +106,6 @@ document.getElementById("sickBalance").innerText =
 </body>
 
 </html>
+
 
 
