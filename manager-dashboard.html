@@ -8,75 +8,36 @@
 
 <body>
 
-<h1>Manager Dashboard</h1>
+<div class="header">Manager Dashboard</div>
 
-<h3>Leave Requests</h3>
+<div class="container">
 
-<table border="1" id="leaveTable">
+<div class="card">
+
+<h2>Leave Requests</h2>
+
+<table id="managerTable">
 
 <tr>
-<th>Employee</th>
 <th>Leave Type</th>
-<th>Start Date</th>
-<th>End Date</th>
+<th>Start</th>
+<th>End</th>
 <th>Status</th>
 <th>Action</th>
 </tr>
 
 </table>
 
-<br>
+</div>
 
-<a href="index.html">Logout</a>
+<a class="logout-btn" href="index.html">Logout</a>
 
-<script>
+</div>
 
-let requests = JSON.parse(localStorage.getItem("leaveRequests")) || [];
-
-let table = document.getElementById("leaveTable");
-
-requests.forEach(function(req,index){
-
-let row = table.insertRow();
-
-row.innerHTML =
-"<td>"+req.employee+"</td>"+
-"<td>"+req.type+"</td>"+
-"<td>"+req.start+"</td>"+
-"<td>"+req.end+"</td>"+
-"<td>"+req.status+"</td>"+
-"<td><button onclick='approveLeave("+index+")'>Approve</button> <button onclick='rejectLeave("+index+")'>Reject</button></td>";
-
-});
-
-
-function approveLeave(index){
-
-requests[index].status = "Approved";
-
-localStorage.setItem("leaveRequests", JSON.stringify(requests));
-
-location.reload();
-
-}
-
-
-function rejectLeave(index){
-
-requests[index].status = "Rejected";
-
-localStorage.setItem("leaveRequests", JSON.stringify(requests));
-
-location.reload();
-
-}
-
-</script>
+<script src="script.js"></script>
 <script>
 loadManagerDashboard();
 </script>
+
 </body>
-
-
 </html>
-
