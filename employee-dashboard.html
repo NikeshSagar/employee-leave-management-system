@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Employee Dashboard</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<h1>Employee Dashboard</h1>
+
+<h2>Welcome Nikesh</h2>
+
+<br>
+
+<h3>Leave Balance</h3>
+
+<p id="vacationBalance">Vacation Days: 12</p>
+<p id="sickBalance">Sick Leave: 5</p>
+
+<br>
+
+<a href="leave-request.html">Request Leave</a>
+
+<br><br>
+
+<a href="leave-calendar.html">Leave Calendar</a>
+
+<br><br>
+
+<h3>My Leave Requests</h3>
+
+<table border="1" id="myLeaveTable">
+
+<tr>
+<th>Leave Type</th>
+<th>Start Date</th>
+<th>End Date</th>
+<th>Status</th>
+</tr>
+
+</table>
+
+<br>
+
+<a href="index.html">Logout</a>
+
+
+<script>
+
+let vacation = 12;
+let sick = 5;
+
+
+let requests = JSON.parse(localStorage.getItem("leaveRequests")) || [];
+
+
+let table = document.getElementById("myLeaveTable");
+
+requests.forEach(function(req){
+
+let row = table.insertRow();
+
+row.innerHTML =
+"<td>"+req.type+"</td>"+
+"<td>"+req.start+"</td>"+
+"<td>"+req.end+"</td>"+
+"<td>"+req.status+"</td>";
+
+});
+
+
+requests.forEach(function(req){
+
+if(req.status === "Approved"){
+
+let start = new Date(req.start);
+let end = new Date(req.end);
+
+let timeDiff = end.getTime() - start.getTime();
+let days = Math.ceil(timeDiff / (1000 * 3600 * 24)) + 1;
+
+if(req.type === "Vacation"){
+vacation -= days;
+}
+
+if(req.type === "Sick Leave"){
+sick -= days;
+}
+
+}
+
+});
+
+
+document.getElementById("vacationBalance").innerText = "Vacation Days: " + vacation;
+document.getElementById("sickBalance").innerText = "Sick Leave: " + sick;
+
+</script>
+
+</body>
+
+</html>
