@@ -1,5 +1,3 @@
-// LOGIN FUNCTION
-
 function loginUser(){
 
 let email=document.getElementById("email").value;
@@ -14,50 +12,46 @@ window.location.href="manager-dashboard.html";
 }
 
 else{
-alert("Invalid login credentials");
+alert("Invalid login");
 }
 
 }
 
 
-
-// SUBMIT LEAVE REQUEST
 
 function submitLeave(){
 
-let leaveType=document.getElementById("leaveType").value;
-let startDate=document.getElementById("startDate").value;
-let endDate=document.getElementById("endDate").value;
+let type=document.getElementById("leaveType").value;
+let start=document.getElementById("startDate").value;
+let end=document.getElementById("endDate").value;
 let reason=document.getElementById("reason").value;
 
-if(!leaveType || !startDate || !endDate || !reason){
-alert("Please fill all fields");
+if(!type || !start || !end || !reason){
+alert("Fill all fields");
 return;
 }
 
-let leaveRequest={
-type:leaveType,
-start:startDate,
-end:endDate,
+let request={
+type:type,
+start:start,
+end:end,
 reason:reason,
 status:"Pending"
 };
 
 let requests=JSON.parse(localStorage.getItem("leaveRequests"))||[];
 
-requests.push(leaveRequest);
+requests.push(request);
 
 localStorage.setItem("leaveRequests",JSON.stringify(requests));
 
-alert("Leave request submitted successfully");
+alert("Leave Request Submitted");
 
 window.location.href="employee-dashboard.html";
 
 }
 
 
-
-// LOAD EMPLOYEE DASHBOARD DATA
 
 function loadEmployeeDashboard(){
 
@@ -66,15 +60,6 @@ let requests=JSON.parse(localStorage.getItem("leaveRequests"))||[];
 let table=document.getElementById("myLeaveTable");
 
 if(!table) return;
-
-table.innerHTML=`
-<tr>
-<th>Leave Type</th>
-<th>Start Date</th>
-<th>End Date</th>
-<th>Status</th>
-</tr>
-`;
 
 let vacation=12;
 let sick=5;
@@ -91,34 +76,24 @@ row.innerHTML=
 
 if(req.status==="Approved"){
 
-let start=new Date(req.start);
-let end=new Date(req.end);
+let s=new Date(req.start);
+let e=new Date(req.end);
 
-let days=(end-start)/(1000*60*60*24)+1;
+let days=(e-s)/(1000*60*60*24)+1;
 
-if(req.type==="Vacation"){
-vacation-=days;
-}
-
-if(req.type==="Sick Leave"){
-sick-=days;
-}
+if(req.type==="Vacation"){vacation-=days}
+if(req.type==="Sick Leave"){sick-=days}
 
 }
 
 });
 
-let vac=document.getElementById("vacationBalance");
-let sk=document.getElementById("sickBalance");
-
-if(vac) vac.innerText="Vacation Days: "+vacation;
-if(sk) sk.innerText="Sick Leave: "+sick;
+document.getElementById("vacationBalance").innerText="Vacation Days: "+vacation;
+document.getElementById("sickBalance").innerText="Sick Leave: "+sick;
 
 }
 
 
-
-// LOAD MANAGER DASHBOARD
 
 function loadManagerDashboard(){
 
@@ -127,16 +102,6 @@ let requests=JSON.parse(localStorage.getItem("leaveRequests"))||[];
 let table=document.getElementById("managerTable");
 
 if(!table) return;
-
-table.innerHTML=`
-<tr>
-<th>Leave Type</th>
-<th>Start</th>
-<th>End</th>
-<th>Status</th>
-<th>Action</th>
-</tr>
-`;
 
 requests.forEach(function(req,index){
 
@@ -155,8 +120,6 @@ row.innerHTML=
 
 
 
-// APPROVE LEAVE
-
 function approveLeave(index){
 
 let requests=JSON.parse(localStorage.getItem("leaveRequests"))||[];
@@ -168,4 +131,3 @@ localStorage.setItem("leaveRequests",JSON.stringify(requests));
 location.reload();
 
 }
-
