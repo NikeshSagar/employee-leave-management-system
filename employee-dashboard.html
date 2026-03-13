@@ -12,8 +12,6 @@
 
 <h2>Welcome Nikesh</h2>
 
-<br>
-
 <h3>Leave Balance</h3>
 
 <p id="vacationBalance">Vacation Days: 12</p>
@@ -46,15 +44,14 @@
 
 <a href="index.html">Logout</a>
 
+<script src="script.js"></script>
 
 <script>
 
 let vacation = 12;
 let sick = 5;
 
-
 let requests = JSON.parse(localStorage.getItem("leaveRequests")) || [];
-
 
 let table = document.getElementById("myLeaveTable");
 
@@ -70,36 +67,8 @@ row.innerHTML =
 
 });
 
-
-requests.forEach(function(req){
-
-if(req.status === "Approved"){
-
-let start = new Date(req.start);
-let end = new Date(req.end);
-
-let timeDiff = end.getTime() - start.getTime();
-let days = Math.ceil(timeDiff / (1000 * 3600 * 24)) + 1;
-
-if(req.type === "Vacation"){
-vacation -= days;
-}
-
-if(req.type === "Sick Leave"){
-sick -= days;
-}
-
-}
-
-});
-
-
-document.getElementById("vacationBalance").innerText = "Vacation Days: " + vacation;
-document.getElementById("sickBalance").innerText = "Sick Leave: " + sick;
-
 </script>
 
 </body>
-
 
 </html>
