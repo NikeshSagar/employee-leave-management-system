@@ -1,69 +1,112 @@
 body{
-font-family:Arial, sans-serif;
+font-family: "Segoe UI", Arial, sans-serif;
 margin:0;
-background:linear-gradient(135deg,#4facfe,#00f2fe);
-min-height:100vh;
+background:#f4f6f9;
 }
 
-.dashboard-container{
-width:80%;
-margin:auto;
-padding:30px;
-}
-
-h1{
-text-align:center;
+.header{
+background:#2c3e50;
 color:white;
+padding:15px 40px;
+font-size:22px;
+font-weight:bold;
 }
 
-.top-section{
-display:flex;
-justify-content:space-between;
-align-items:center;
+.navbar{
+background:#34495e;
+padding:10px 40px;
+}
+
+.navbar a{
+color:white;
+text-decoration:none;
+margin-right:15px;
+padding:8px 14px;
+border-radius:4px;
+}
+
+.navbar a:hover{
+background:#1abc9c;
+}
+
+.container{
+width:80%;
+margin:30px auto;
+}
+
+.card{
 background:white;
-padding:20px;
-border-radius:10px;
-box-shadow:0 5px 15px rgba(0,0,0,0.2);
+padding:25px;
+border-radius:8px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
 margin-bottom:30px;
 }
 
-.welcome-box{
-max-width:300px;
+h2{
+margin-top:0;
 }
 
-.action-buttons a{
-text-decoration:none;
-background:#007bff;
+button{
+background:#1abc9c;
+border:none;
+padding:10px 20px;
 color:white;
-padding:10px 15px;
-border-radius:6px;
-margin-right:10px;
+border-radius:4px;
+cursor:pointer;
 }
 
-.action-buttons a:hover{
-background:#0056b3;
+button:hover{
+background:#16a085;
+}
+
+input,select,textarea{
+width:100%;
+padding:10px;
+margin-top:8px;
+margin-bottom:15px;
+border:1px solid #ccc;
+border-radius:4px;
 }
 
 table{
 width:100%;
 border-collapse:collapse;
-background:white;
-border-radius:10px;
-overflow:hidden;
+margin-top:20px;
 }
 
 th{
-background:#007bff;
+background:#2c3e50;
 color:white;
 padding:12px;
 }
 
 td{
 padding:10px;
-text-align:center;
 border-bottom:1px solid #ddd;
+text-align:center;
 }
 
 tr:hover{
-background:#f2f2f2;
+background:#f1f1f1;
+}
+
+.login-page{
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+background:#2c3e50;
+}
+
+.login-card{
+background:white;
+padding:40px;
+width:320px;
+border-radius:8px;
+box-shadow:0 6px 20px rgba(0,0,0,0.3);
+text-align:center;
+}
+
+.login-card h2{
+margin-bottom:20px;
 }
