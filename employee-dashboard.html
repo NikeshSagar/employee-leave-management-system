@@ -8,28 +8,29 @@
 
 <body>
 
+<div class="dashboard-container">
+
 <h1>Employee Dashboard</h1>
 
+<div class="top-section">
+
+<div class="welcome-box">
 <h2>Welcome Nikesh</h2>
 
-<br>
-
 <h3>Leave Balance</h3>
-
 <p id="vacationBalance">Vacation Days: 12</p>
 <p id="sickBalance">Sick Leave: 5</p>
+</div>
 
-<br>
-
+<div class="action-buttons">
 <a href="leave-request.html">Request Leave</a>
-
-<br><br>
-
 <a href="leave-calendar.html">Leave Calendar</a>
+<a href="index.html">Logout</a>
+</div>
 
-<br><br>
+</div>
 
-<h3>My Leave Requests</h3>
+<h2>My Leave Requests</h2>
 
 <table border="1" id="myLeaveTable">
 
@@ -42,9 +43,7 @@
 
 </table>
 
-<br>
-
-<a href="index.html">Logout</a>
+</div>
 
 
 <script>
@@ -69,7 +68,6 @@ row.innerHTML =
 });
 
 
-
 requests.forEach(function(req){
 
 if(req.status === "Approved"){
@@ -79,33 +77,20 @@ let end = new Date(req.end);
 
 let diff = end.getTime() - start.getTime();
 
-let days = Math.ceil(diff / (1000 * 3600 * 24)) + 1;
+let days = Math.ceil(diff/(1000*3600*24))+1;
 
-if(req.type === "Vacation"){
-vacation -= days;
-}
-
-if(req.type === "Sick Leave"){
-sick -= days;
-}
+if(req.type==="Vacation"){vacation-=days}
+if(req.type==="Sick Leave"){sick-=days}
 
 }
 
 });
 
-
-
-document.getElementById("vacationBalance").innerText =
-"Vacation Days: " + vacation;
-
-document.getElementById("sickBalance").innerText =
-"Sick Leave: " + sick;
+document.getElementById("vacationBalance").innerText="Vacation Days: "+vacation;
+document.getElementById("sickBalance").innerText="Sick Leave: "+sick;
 
 </script>
 
 </body>
 
 </html>
-
-
-
