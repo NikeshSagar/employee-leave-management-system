@@ -71,9 +71,6 @@ window.location.href="manager-dashboard.html";
 }
 
 }
-
-
-
 function submitLeave(){
 
 let type=document.getElementById("leaveType").value;
