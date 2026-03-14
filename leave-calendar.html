@@ -3,39 +3,65 @@
 
 <head>
 <title>Leave Calendar</title>
+
 <link rel="stylesheet" href="style.css">
+
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+
 </head>
 
 <body>
 
-<h1>Leave Calendar</h1>
+<div class="header">Leave Calendar</div>
 
-<table border="1">
+<div class="container">
 
-<tr>
-<th>Date</th>
-<th>Employee</th>
-<th>Leave Type</th>
-</tr>
+<div id="calendar"></div>
 
-<tr>
-<td>20 Mar</td>
-<td>Nikesh</td>
-<td>Vacation</td>
-</tr>
+</div>
 
-<tr>
-<td>21 Mar</td>
-<td>Nikesh</td>
-<td>Vacation</td>
-</tr>
+<script>
 
-</table>
+document.addEventListener('DOMContentLoaded', function() {
 
-<br>
+let requests=JSON.parse(localStorage.getItem("leaveRequests"))||[];
 
-<a href="employee-dashboard.html">Back to Dashboard</a>
+let events=[
+
+{title:'Republic Day',date:'2026-01-26'},
+{title:'Independence Day',date:'2026-08-15'},
+{title:'Christmas',date:'2026-12-25'}
+
+];
+
+requests.forEach(function(r){
+
+if(r.status==="Approved"){
+
+events.push({
+title:r.employee+" Leave",
+start:r.start,
+end:r.end
+});
+
+}
+
+});
+
+var calendar=new FullCalendar.Calendar(
+document.getElementById('calendar'),
+{
+initialView:'dayGridMonth',
+events:events
+});
+
+calendar.render();
+
+});
+
+</script>
 
 </body>
-
 </html>
