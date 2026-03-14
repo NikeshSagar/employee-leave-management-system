@@ -24,19 +24,22 @@
 
 <script>
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded',function(){
 
 let requests=JSON.parse(localStorage.getItem("leaveRequests"))||[];
 
 let events=[
 
-{title:'Republic Day',date:'2026-01-26'},
-{title:'Independence Day',date:'2026-08-15'},
-{title:'Christmas',date:'2026-12-25'}
+{title:"Republic Day",date:"2026-01-26"},
+{title:"Holi",date:"2026-03-04"},
+{title:"Independence Day",date:"2026-08-15"},
+{title:"Gandhi Jayanti",date:"2026-10-02"},
+{title:"Diwali",date:"2026-11-08"},
+{title:"Christmas",date:"2026-12-25"}
 
 ];
 
-requests.forEach(function(r){
+requests.forEach(r=>{
 
 if(r.status==="Approved"){
 
@@ -50,10 +53,10 @@ end:r.end
 
 });
 
-var calendar=new FullCalendar.Calendar(
-document.getElementById('calendar'),
+let calendar=new FullCalendar.Calendar(
+document.getElementById("calendar"),
 {
-initialView:'dayGridMonth',
+initialView:"dayGridMonth",
 events:events
 });
 
