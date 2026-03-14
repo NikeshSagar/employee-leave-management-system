@@ -14,6 +14,8 @@
 
 <body>
 
+<div class="header">Leave Calendar</div>
+
 <div class="container">
 
 <div id="calendar"></div>
@@ -43,7 +45,7 @@ let events=[
 
 ];
 
-requests.forEach(r=>{
+requests.forEach(function(r){
 
 if(r.status==="Approved"){
 
