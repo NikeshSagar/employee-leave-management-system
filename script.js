@@ -101,7 +101,7 @@ let requests=JSON.parse(localStorage.getItem("leaveRequests"))||[];
 
 let table=document.getElementById("myLeaveTable");
 
-requests.forEach(r=>{
+requests.forEach(function(r){
 
 if(r.employee===user.name){
 
@@ -127,7 +127,7 @@ let requests=JSON.parse(localStorage.getItem("leaveRequests"))||[];
 
 let table=document.getElementById("managerTable");
 
-requests.forEach((r,i)=>{
+requests.forEach(function(r,i){
 
 let row=table.insertRow();
 
