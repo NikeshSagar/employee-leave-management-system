@@ -1,24 +1,30 @@
-const users = [
+const users=[
 {email:"nikesh@gmail.com",password:"1234",role:"employee",name:"Nikesh"},
 {email:"rahul@gmail.com",password:"1234",role:"employee",name:"Rahul"},
 {email:"priya@gmail.com",password:"1234",role:"employee",name:"Priya"},
 {email:"manager@gmail.com",password:"1234",role:"manager",name:"Manager"}
 ];
+
 function loginUser(){
 
 let email=document.getElementById("email").value;
 let password=document.getElementById("password").value;
 
-if(email==="employee@gmail.com" && password==="1234"){
+let user=users.find(u=>u.email===email && u.password===password);
+
+if(!user){
+alert("Invalid Login");
+return;
+}
+
+localStorage.setItem("currentUser",JSON.stringify(user));
+
+if(user.role==="employee"){
 window.location.href="employee-dashboard.html";
 }
 
-else if(email==="manager@gmail.com" && password==="1234"){
+if(user.role==="manager"){
 window.location.href="manager-dashboard.html";
-}
-
-else{
-alert("Invalid login");
 }
 
 }
@@ -32,12 +38,10 @@ let start=document.getElementById("startDate").value;
 let end=document.getElementById("endDate").value;
 let reason=document.getElementById("reason").value;
 
-if(!type || !start || !end || !reason){
-alert("Fill all fields");
-return;
-}
+let user=JSON.parse(localStorage.getItem("currentUser"));
 
 let request={
+employee:user.name,
 type:type,
 start:start,
 end:end,
@@ -51,7 +55,7 @@ requests.push(request);
 
 localStorage.setItem("leaveRequests",JSON.stringify(requests));
 
-alert("Leave Request Submitted");
+alert("Leave Submitted");
 
 window.location.href="employee-dashboard.html";
 
@@ -61,16 +65,15 @@ window.location.href="employee-dashboard.html";
 
 function loadEmployeeDashboard(){
 
+let user=JSON.parse(localStorage.getItem("currentUser"));
+
 let requests=JSON.parse(localStorage.getItem("leaveRequests"))||[];
 
 let table=document.getElementById("myLeaveTable");
 
-if(!table) return;
-
-let vacation=12;
-let sick=5;
-
 requests.forEach(function(req){
+
+if(req.employee===user.name){
 
 let row=table.insertRow();
 
@@ -80,22 +83,9 @@ row.innerHTML=
 "<td>"+req.end+"</td>"+
 "<td>"+req.status+"</td>";
 
-if(req.status==="Approved"){
-
-let s=new Date(req.start);
-let e=new Date(req.end);
-
-let days=(e-s)/(1000*60*60*24)+1;
-
-if(req.type==="Vacation"){vacation-=days}
-if(req.type==="Sick Leave"){sick-=days}
-
 }
 
 });
-
-document.getElementById("vacationBalance").innerText="Vacation Days: "+vacation;
-document.getElementById("sickBalance").innerText="Sick Leave: "+sick;
 
 }
 
@@ -107,13 +97,12 @@ let requests=JSON.parse(localStorage.getItem("leaveRequests"))||[];
 
 let table=document.getElementById("managerTable");
 
-if(!table) return;
-
 requests.forEach(function(req,index){
 
 let row=table.insertRow();
 
 row.innerHTML=
+"<td>"+req.employee+"</td>"+
 "<td>"+req.type+"</td>"+
 "<td>"+req.start+"</td>"+
 "<td>"+req.end+"</td>"+
