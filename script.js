@@ -1,3 +1,9 @@
+const users = [
+{email:"nikesh@gmail.com",password:"1234",role:"employee",name:"Nikesh"},
+{email:"rahul@gmail.com",password:"1234",role:"employee",name:"Rahul"},
+{email:"priya@gmail.com",password:"1234",role:"employee",name:"Priya"},
+{email:"manager@gmail.com",password:"1234",role:"manager",name:"Manager"}
+];
 function loginUser(){
 
 let email=document.getElementById("email").value;
